@@ -199,7 +199,6 @@ function addToBody(){
         body.push(newBody);
 }
 
-
 function renderGame() {
 
     // Clear screen
@@ -222,12 +221,13 @@ function renderGame() {
 function gameLoop() {
     // Main game
     changePosition();
-
     renderGame();
+    
 
     // End calls
     window.requestAnimationFrame(gameLoop);
 }
+
 
 function main() {
     // Set canvas width & height automatically
@@ -235,6 +235,7 @@ function main() {
     window.addEventListener('resize', () => {
         setCanvasSize();
     })
+
     document.addEventListener("keyup", (e) => {
         switch (e.key) {
             case "ArrowRight":
@@ -289,3 +290,4 @@ function main() {
 
 /****Main call*****/
 main();
+
