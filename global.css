@@ -130,3 +130,10 @@ input{
 
 
 }
+.high-score-label, .score-label{
+    position: relative;
+    bottom: 640px;
+    left: 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}

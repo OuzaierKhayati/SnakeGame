@@ -2,14 +2,17 @@
 const Medium = document.getElementById("Medium");
 const Hard = document.getElementById("Hard");
 const Easy = document.getElementById("Easy");
+const highScore = document.getElementById("high-score");
+const Score = document.getElementById("score");
 
 const canvas = getCanvas();
 const ctx = canvas.getContext("2d");
 let newDirection = "right", oldDirection = "right";
 let v =0;// it should be{1,2,3,5,10,}
-let food = {x:300,y:20}
+let food = {x:700,y:300}
+let highscore=0;
 
-let body = [{ x: 300, y: 20, newDirection: "right"}, { x: 280, y: 20, newDirection: "right"}, { x: 260, y: 20, newDirection: "right"}, { x: 240, y: 20, newDirection: "right"}, { x: 220, y: 20, newDirection: "right"}, { x: 200, y: 20, newDirection: "right"}]//{x:930,y:10, newDirection:"right", oldDirection:"right"}];
+let body = [{ x: 700, y: 300, newDirection: "right"}, { x: 670, y: 300, newDirection: "right"}, { x: 640, y: 300, newDirection: "right"}, { x: 610, y: 300, newDirection: "right"}, { x: 580, y: 300, newDirection: "right"}, { x: 550, y: 300, newDirection: "right"}]//{x:930,y:10, newDirection:"right", oldDirection:"right"}];
 //bodys.forEach(console.log(body.x));
 
 
@@ -49,23 +52,23 @@ function drawSquare(x, y, size, fill) {
 function moveRight(h) {
 
     let { width } = getCanvasSize();
-    while(width % 20 !=0){
+    while(width % 30 !=0){
         width++;
     }
     body[h].x += v;
     if (body[h].x >= width) {
-        body[h].x = -20;
+        body[h].x = -30;
     }
 }
 
 function moveLeft(h) {
 
     let { width } = getCanvasSize();
-    while(width % 20 !=0){
+    while(width % 30 !=0){
         width++;
     }
     body[h].x -= v;
-    if (body[h].x <=-20) {
+    if (body[h].x <=-30) {
         body[h].x = width;
     }
 }
@@ -73,11 +76,11 @@ function moveLeft(h) {
 function moveUp(h) {
 
     let { height } = getCanvasSize();
-    while(height % 20 !=0){
+    while(height % 30 !=0){
         height++;
     }
     body[h].y -= v;
-    if (body[h].y <= -20) {
+    if (body[h].y <= -30) {
         body[h].y = height;
     }
 }
@@ -85,12 +88,12 @@ function moveUp(h) {
 function moveDown(h) {
 
     let { height } = getCanvasSize();
-    while(height % 20 !=0){
+    while(height % 30 !=0){
         height++;
     }
     body[h].y += v;
     if (body[h].y >= height) {
-        body[h].y = -20;
+        body[h].y = -30;
     }
 }
 
@@ -119,8 +122,8 @@ function move() {
 ///////////////////////
 function isDead(){
     for (let h=4; h<body.length; h++){
-        if (Math.abs(body[0].x-body[h].x)<20 && Math.abs(body[0].y-body[h].y)<20){
-            body = [{ x: 300, y: 20, newDirection: "right"}, { x: 280, y: 20, newDirection: "right"}, { x: 260, y: 20, newDirection: "right"}, { x: 240, y: 20, newDirection: "right"}, { x: 220, y: 20, newDirection: "right"}, { x: 200, y: 20, newDirection: "right"}];
+        if (Math.abs(body[0].x-body[h].x)<30 && Math.abs(body[0].y-body[h].y)<30){
+            body = [{ x: 700, y: 300, newDirection: "right"}, { x: 670, y: 300, newDirection: "right"}, { x: 640, y: 300, newDirection: "right"}, { x: 610, y: 300, newDirection: "right"}, { x: 580, y: 300, newDirection: "right"}, { x: 550, y: 300, newDirection: "right"}];
             newDirection=oldDirection="right";
             break;
         }
@@ -133,7 +136,7 @@ function testNewDirection(){
     while (body[i].newDirection == body[i+1].newDirection && i<body.length-2){
         i++;
     }
-    if ((body[i].x == body[i+1].x || body[i].y == body[i+1].y) && body[0].x%20==0 && body[0].y%20==0){
+    if ((body[i].x == body[i+1].x || body[i].y == body[i+1].y) && body[0].x%30==0 && body[0].y%30==0){
         return true;
     }
     else {return false;}
@@ -175,8 +178,8 @@ function drawFood(){
     let y1=body[0].y,x1=body[0].x;
     const {width, height}= getCanvasSize();
     while (body[0].x==x1 || body[0].y==y1 ){
-        x1 = Math.floor(Math.random()*Math.floor(width/20))*20;
-        y1 = Math.floor(Math.random()*Math.floor(height/20))*20;
+        x1 = Math.floor(Math.random()*Math.floor(width/30))*30;
+        y1 = Math.floor(Math.random()*Math.floor(height/30))*30;
 
     }      
     return {x:x1,y:y1};
@@ -185,15 +188,15 @@ function drawFood(){
 function addToBody(){
     let length = body.length;
         if (body[length-1].newDirection == "right" ){
-            newBody = {x:body[length-1].x-20, y:body[length-1].y,newDirection:"right" }
+            newBody = {x:body[length-1].x-30, y:body[length-1].y,newDirection:"right" }
         
         }else if (body[length-1].newDirection == "left" ){
-            newBody = {x:body[length-1].x+20, y:body[length-1].y,newDirection:"left" }
+            newBody = {x:body[length-1].x+30, y:body[length-1].y,newDirection:"left" }
         
         }else if (body[length-1].newDirection == "up" ){
-            newBody = {x:body[length-1].x, y:body[length-1].y+20,newDirection:"up" }
+            newBody = {x:body[length-1].x, y:body[length-1].y+30,newDirection:"up" }
         }else if (body[length-1].newDirection == "down" ){
-            newBody = {x:body[length-1].x, y:body[length-1].y-20,newDirection:"down" }
+            newBody = {x:body[length-1].x, y:body[length-1].y-30,newDirection:"down" }
         }
 
         body.push(newBody);
@@ -206,16 +209,21 @@ function renderGame() {
 
     // Draw game
 
-    drawSquare(body[0].x, body[0].y, 20, 'white');
+    drawSquare(body[0].x, body[0].y, 30, 'white');
     for (let h = 1; h < body.length; h++) {
-        drawSquare(body[h].x, body[h].y, 20, 'black');
+        drawSquare(body[h].x, body[h].y, 30, 'black');
     }
+    Score.innerHTML = `${body.length}`
     if (body[0].x==food.x && body[0].y==food.y){
         food = drawFood();
         addToBody();
+        Score.innerHTML = `${body.length}`
+        if (highscore<body.length){
+            highScore.innerHTML = `${body.length}`
+        }
     }
     //food=drawFood();
-    drawSquare(food.x, food.y, 20, "red");
+    drawSquare(food.x, food.y, 30, "red");
 }
 
 function gameLoop() {
@@ -276,7 +284,7 @@ function main() {
         if (Medium.checked) {v=10;}
       });
       Hard.addEventListener("change", () => {
-        if (Hard.checked) {v=20;}
+        if (Hard.checked) {v=15;}
       });
       
 
