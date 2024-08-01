@@ -1,7 +1,7 @@
 /******CONSTANTS*******/
 const Medium = document.getElementById("Medium");
 const Hard = document.getElementById("Hard");
-const Wahsh = document.getElementById("Wahsh");
+const Easy = document.getElementById("Easy");
 
 const canvas = getCanvas();
 const ctx = canvas.getContext("2d");
@@ -54,7 +54,7 @@ function moveRight(h) {
     }
     body[h].x += v;
     if (body[h].x >= width) {
-        body[h].x = 0;
+        body[h].x = -20;
     }
 }
 
@@ -66,7 +66,7 @@ function moveLeft(h) {
     }
     body[h].x -= v;
     if (body[h].x <=-20) {
-        body[h].x = width-20;
+        body[h].x = width;
     }
 }
 
@@ -78,7 +78,7 @@ function moveUp(h) {
     }
     body[h].y -= v;
     if (body[h].y <= -20) {
-        body[h].y = height-20;
+        body[h].y = height;
     }
 }
 
@@ -90,7 +90,7 @@ function moveDown(h) {
     }
     body[h].y += v;
     if (body[h].y >= height) {
-        body[h].y = 0;
+        body[h].y = -20;
     }
 }
 
@@ -206,16 +206,16 @@ function renderGame() {
 
     // Draw game
 
-    drawSquare(body[0].x, body[0].y, 20, 'tomato');
+    drawSquare(body[0].x, body[0].y, 20, 'white');
     for (let h = 1; h < body.length; h++) {
-        drawSquare(body[h].x, body[h].y, 20, '#2F4F4F');
+        drawSquare(body[h].x, body[h].y, 20, 'black');
     }
     if (body[0].x==food.x && body[0].y==food.y){
         food = drawFood();
         addToBody();
     }
     //food=drawFood();
-    drawSquare(food.x, food.y, 20, "blue");
+    drawSquare(food.x, food.y, 20, "red");
 }
 
 function gameLoop() {
@@ -268,16 +268,17 @@ function main() {
             case "R": if (body.length>2){body.pop()} ;break;
         }
     });
+
+    Easy.addEventListener("change", () => {
+        if (Easy.checked) {v=5;}
+      });
     Medium.addEventListener("change", () => {
-        if (Medium.checked) {v=5;}
+        if (Medium.checked) {v=10;}
       });
       Hard.addEventListener("change", () => {
-        if (Hard.checked) {v=10;}
+        if (Hard.checked) {v=20;}
       });
-      Wahsh.addEventListener("change", () => {
-        if (Wahsh.checked) {v=20;}
-        window.alert("CABITAS")
-      });
+      
 
 
 

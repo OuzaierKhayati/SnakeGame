@@ -7,26 +7,35 @@
     <link rel="stylesheet" href="global.css">
     <title>Snake</title>
 </head>
-<body id ="home" style="height: 95vh;">
-    <h1 class="center">Snake Game</h1>
-    <div class="canvas-container" >
-        <canvas id="game-canvas" style="border:4px solid black;" >
-        </canvas>
-        
-    </div>
-    <br>
-    <section>
+<body id ="home" >
+    <div class="game-container">
+        <div class="left-box">
+            <h1 class="center" >Snake Game</h1>
 
-        <label for="Medium" class="speed">Medium </label>
-        <input type="radio" id="Medium" value="Medium" name="speed">
+            <li style="margin-left:20px;">Press <b>A</b> to increase the size of the snake.</li>
+            <li style="margin-left:20px;">Press <b>R</b> to reduce the size of the snake.</li>
+            
+            <h1 class="h1Speed" >You can choose your speed</h1>
+            <div class="speed-box">
+                <input type="radio" id="Easy" value="Easy" name="speed">
+                <label for="Easy" class="speed">Easy </label>
+                
+                <input type="radio" id="Medium" value="Medium" name="speed">
+                <label for="Medium" class="speed">Medium </label>
+            
+                <input type="radio" id="Hard" value="Hard" name="speed">
+                <label for="Hard" class="speed">Hard </label>
+            </div>
+
+
+        </div>
+        <div class="canvas-container" style="height: 95vh;">
+            <canvas id="game-canvas" style="border:4px solid black;" >
+            </canvas>
+            
+        </div>
+    </div>
     
-        <label for="Hard" class="speed">Hard </label>
-        <input type="radio" id="Hard" value="Hard" name="speed">
-    
-        <label for="Wahsh" class="speed">Wahsh </label>
-        <input type="radio" id="Wahsh" value="Wahsh" name="speed">
-      
-    </section>
 
 </body>
 <script src="main.js" defer></script>
