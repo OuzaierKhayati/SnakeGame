@@ -40,12 +40,29 @@ function clearScreen() {
     ctx.clearRect(0, 0, width, height);
 }
 
-function drawSquare(x, y, size, fill) {
+function drawSquare(x, y, size, fill, borderWidth = 2, radius = 3) {
     ctx.fillStyle = fill;
-    ctx.fillRect(x, y, size, size);
+    ctx.lineWidth = borderWidth;
     ctx.strokeStyle = 'black';
-    ctx.strokeRect(x, y, size, size);
-    
+
+    // Begin path for rounded rectangle
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + size - radius, y);
+    ctx.quadraticCurveTo(x + size, y, x + size, y + radius);
+    ctx.lineTo(x + size, y + size - radius);
+    ctx.quadraticCurveTo(x + size, y + size, x + size - radius, y + size);
+    ctx.lineTo(x + radius, y + size);
+    ctx.quadraticCurveTo(x, y + size, x, y + size - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+
+    // Fill the rectangle
+    ctx.fill();
+
+    // Stroke the rectangle border
+    ctx.stroke();
 }
 
 // moving diretion
