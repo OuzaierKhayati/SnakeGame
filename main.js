@@ -161,20 +161,18 @@ function drawFood(){
 
 function addToBody(){
     let length = body.length;
-    if (length<100){
-        if (body[length-1].newDirection == "right" ){
-            newBody = {x:body[length-1].x-30, y:body[length-1].y,newDirection:"right" }
-        
-        }else if (body[length-1].newDirection == "left" ){
-            newBody = {x:body[length-1].x+30, y:body[length-1].y,newDirection:"left" }
-        
-        }else if (body[length-1].newDirection == "up" ){
-            newBody = {x:body[length-1].x, y:body[length-1].y+30,newDirection:"up" }
-        }else if (body[length-1].newDirection == "down" ){
-            newBody = {x:body[length-1].x, y:body[length-1].y-30,newDirection:"down" }
-        }
-        body.push(newBody);
+    if (body[length-1].newDirection == "right" ){
+        newBody = {x:body[length-1].x-30, y:body[length-1].y,newDirection:"right" }
+    
+    }else if (body[length-1].newDirection == "left" ){
+        newBody = {x:body[length-1].x+30, y:body[length-1].y,newDirection:"left" }
+    
+    }else if (body[length-1].newDirection == "up" ){
+        newBody = {x:body[length-1].x, y:body[length-1].y+30,newDirection:"up" }
+    }else if (body[length-1].newDirection == "down" ){
+        newBody = {x:body[length-1].x, y:body[length-1].y-30,newDirection:"down" }
     }
+    body.push(newBody);
 
 }
 
