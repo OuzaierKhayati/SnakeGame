@@ -13,8 +13,7 @@ let v =0;//
 let food = {x:900,y:300}
 let highscore=0;
 
-let body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}, { x: 780, y: 300, newDirection: "right"}, { x: 750, y: 300, newDirection: "right"}];
-//bodys.forEach(console.log(body.x));
+let body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}];
 
 
 function getCanvas() {
@@ -67,42 +66,21 @@ function drawSquare(x, y, size, fill, borderWidth = 2, radius = 3) {
 }
 
 // moving diretion
-function moveRight(h) {
-
-    let { width } = getCanvasSize();
-    body[h].x += v;
-}
-
-function moveLeft(h) {
-    body[h].x -= v;
-}
-
-function moveUp(h) {
-
-    body[h].y -= v;
-}
-
-function moveDown(h) {
-
-    let { height } = getCanvasSize();
-    body[h].y += v;
-}
-
 
 function move() {
 
     for (let h = 0; h < body.length; h++) {
         if (body[h].newDirection === "right") {
-            moveRight(h);
+            body[h].x += v;
 
         } else if (body[h].newDirection === "left") {
-            moveLeft(h);
+            body[h].x -= v;
 
         } else if (body[h].newDirection === "up") {
-            moveUp(h);
+            body[h].y -= v;
 
         } else if (body[h].newDirection === "down") {
-            moveDown(h);
+            body[h].y += v;
 
         }
     }
@@ -110,7 +88,6 @@ function move() {
 }
 
 
-///////////////////////
 function isDead(){
     const {width, height}= getCanvasSize();
     if (body[0].x<-v || body[0].x>width-30+v || body[0].y<-v || body[0].y>height-30+v){
@@ -153,13 +130,11 @@ function changePosition() {
             body[0].newDirection=newDirection;
             oldDirection = newDirection;
             move();
-            //testHeadPosition();
             isDead();
         }
         else {
             move();
             isDead();
-            //testHeadPosition();
         }
     }
     else { newDirection=oldDirection;
@@ -168,7 +143,6 @@ function changePosition() {
             body[h].newDirection=body[h-1].newDirection;}
         }
         move();
-        //testHeadPosition();
         isDead();
     }
 
@@ -241,7 +215,7 @@ function gameLoop() {
 
 
 function main() {
-    // Set canvas width & height automaticallyj                                                 
+    // Set canvas width & height automatically                                         
     setCanvasSize();
     window.addEventListener('resize', () => {
         setCanvasSize();
@@ -250,23 +224,23 @@ function main() {
     document.addEventListener("keyup", (e) => {
 
         switch (e.key){
-            case "d":
+            case "ArrowRight":
                 if (oldDirection != "left" && oldDirection != "right") {
                         newDirection = "right";          
                 } break;
 
-            case "q":
+            case "ArrowLeft":
                 if (oldDirection != "right" && oldDirection != "left") {
                         newDirection = "left";                   
                 } break;
 
-            case "z":
+            case "ArrowUp":
                 if (oldDirection != "down" && oldDirection != "up") {
                         newDirection = "up";
                 } break;
 
 
-            case "s":
+            case "ArrowDown":
                 if (oldDirection != "down" && oldDirection != "up") {
                         newDirection = "down";
                 } break;
@@ -281,7 +255,6 @@ function main() {
         }
     });
 
-    // the problem is not bc of the speed but u have to check to condition if of the move functions right...
     Easy.addEventListener("change", () => {
         if (Easy.checked) {v=5;}
       });
@@ -297,11 +270,6 @@ function main() {
             radio.blur();
         });
     });
-      
-
-
-
-
 
     // Run game
     window.requestAnimationFrame(gameLoop)
@@ -310,7 +278,3 @@ function main() {
 
 /****Main call*****/
 main();
-
-/*!! fix the problem which display when u start play 
-!! fix the display position and make it relative with the widh and 
-height of the screen page */

@@ -122,6 +122,8 @@ input{
     background-color: rgb(209, 209, 209);
     width: 1492px;
     height: 1038px !important;
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px ;
 }
 
 .speed{
