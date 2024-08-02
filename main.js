@@ -4,15 +4,16 @@ const Hard = document.getElementById("Hard");
 const Easy = document.getElementById("Easy");
 const highScore = document.getElementById("high-score");
 const Score = document.getElementById("score");
+const speedRadios = document.querySelectorAll('input[name="speed"]');
 
 const canvas = getCanvas();
 const ctx = canvas.getContext("2d");
 let newDirection = "right", oldDirection = "right";
-let v =0;// it should be{1,2,3,5,10,}
-let food = {x:700,y:300}
+let v =0;// 
+let food = {x:900,y:300}
 let highscore=0;
 
-let body = [{ x: 700, y: 300, newDirection: "right"}, { x: 670, y: 300, newDirection: "right"}, { x: 640, y: 300, newDirection: "right"}, { x: 610, y: 300, newDirection: "right"}, { x: 580, y: 300, newDirection: "right"}, { x: 550, y: 300, newDirection: "right"}]//{x:930,y:10, newDirection:"right", oldDirection:"right"}];
+let body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}, { x: 780, y: 300, newDirection: "right"}, { x: 750, y: 300, newDirection: "right"}];
 //bodys.forEach(console.log(body.x));
 
 
@@ -69,49 +70,22 @@ function drawSquare(x, y, size, fill, borderWidth = 2, radius = 3) {
 function moveRight(h) {
 
     let { width } = getCanvasSize();
-    while(width % 30 !=0){
-        width++;
-    }
     body[h].x += v;
-    if (body[h].x >= width) {
-        body[h].x = -30;
-    }
 }
 
 function moveLeft(h) {
-
-    let { width } = getCanvasSize();
-    while(width % 30 !=0){
-        width++;
-    }
     body[h].x -= v;
-    if (body[h].x <=-30) {
-        body[h].x = width;
-    }
 }
 
 function moveUp(h) {
 
-    let { height } = getCanvasSize();
-    while(height % 30 !=0){
-        height++;
-    }
     body[h].y -= v;
-    if (body[h].y <= -30) {
-        body[h].y = height;
-    }
 }
 
 function moveDown(h) {
 
     let { height } = getCanvasSize();
-    while(height % 30 !=0){
-        height++;
-    }
     body[h].y += v;
-    if (body[h].y >= height) {
-        body[h].y = -30;
-    }
 }
 
 
@@ -138,11 +112,20 @@ function move() {
 
 ///////////////////////
 function isDead(){
-    for (let h=4; h<body.length; h++){
-        if (Math.abs(body[0].x-body[h].x)<30 && Math.abs(body[0].y-body[h].y)<30){
-            body = [{ x: 700, y: 300, newDirection: "right"}, { x: 670, y: 300, newDirection: "right"}, { x: 640, y: 300, newDirection: "right"}, { x: 610, y: 300, newDirection: "right"}, { x: 580, y: 300, newDirection: "right"}, { x: 550, y: 300, newDirection: "right"}];
-            newDirection=oldDirection="right";
-            break;
+    const {width, height}= getCanvasSize();
+    if (body[0].x<-v || body[0].x>width-30+v || body[0].y<-v || body[0].y>height-30+v){
+        body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}, { x: 780, y: 300, newDirection: "right"}, { x: 750, y: 300, newDirection: "right"}];
+        newDirection=oldDirection="right";
+        food = {x:900,y:300};
+    }
+    else{
+        for (let h=3; h<body.length; h++){
+            if (Math.abs(body[0].x-body[h].x)<30 && Math.abs(body[0].y-body[h].y)<30){
+                body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}, { x: 780, y: 300, newDirection: "right"}, { x: 750, y: 300, newDirection: "right"}];
+                newDirection=oldDirection="right";
+                food = {x:900,y:300};
+                break;
+            }
         }
     }
 
@@ -204,6 +187,7 @@ function drawFood(){
 
 function addToBody(){
     let length = body.length;
+    if (length<100){
         if (body[length-1].newDirection == "right" ){
             newBody = {x:body[length-1].x-30, y:body[length-1].y,newDirection:"right" }
         
@@ -215,8 +199,9 @@ function addToBody(){
         }else if (body[length-1].newDirection == "down" ){
             newBody = {x:body[length-1].x, y:body[length-1].y-30,newDirection:"down" }
         }
-
         body.push(newBody);
+    }
+
 }
 
 function renderGame() {
@@ -236,6 +221,7 @@ function renderGame() {
         addToBody();
         Score.innerHTML = `${body.length}`
         if (highscore<body.length){
+            highscore=body.length;
             highScore.innerHTML = `${body.length}`
         }
     }
@@ -255,31 +241,32 @@ function gameLoop() {
 
 
 function main() {
-    // Set canvas width & height automatically
+    // Set canvas width & height automaticallyj                                                 
     setCanvasSize();
     window.addEventListener('resize', () => {
         setCanvasSize();
     })
 
     document.addEventListener("keyup", (e) => {
-        switch (e.key) {
-            case "ArrowRight":
+
+        switch (e.key){
+            case "d":
                 if (oldDirection != "left" && oldDirection != "right") {
                         newDirection = "right";          
                 } break;
 
-            case "ArrowLeft":
+            case "q":
                 if (oldDirection != "right" && oldDirection != "left") {
                         newDirection = "left";                   
                 } break;
 
-            case "ArrowUp":
+            case "z":
                 if (oldDirection != "down" && oldDirection != "up") {
                         newDirection = "up";
                 } break;
 
 
-            case "ArrowDown":
+            case "s":
                 if (oldDirection != "down" && oldDirection != "up") {
                         newDirection = "down";
                 } break;
@@ -294,6 +281,7 @@ function main() {
         }
     });
 
+    // the problem is not bc of the speed but u have to check to condition if of the move functions right...
     Easy.addEventListener("change", () => {
         if (Easy.checked) {v=5;}
       });
@@ -303,6 +291,12 @@ function main() {
       Hard.addEventListener("change", () => {
         if (Hard.checked) {v=15;}
       });
+    
+    speedRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            radio.blur();
+        });
+    });
       
 
 
@@ -317,3 +311,6 @@ function main() {
 /****Main call*****/
 main();
 
+/*!! fix the problem which display when u start play 
+!! fix the display position and make it relative with the widh and 
+height of the screen page */

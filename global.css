@@ -115,25 +115,24 @@ input{
     margin-left: 30px;
 }
 .canvas-container{
-    width: 60%;
-    height: 70vh !important;
+    margin-top: 47px;
     margin-left: 70px;
 }
 #game-canvas{
     background-color: rgb(209, 209, 209);
+    width: 1492px;
+    height: 1038px !important;
 }
 
 .speed{
     display: inline-block;
     padding:20px;
     font-size: 1.5rem;
-
-
+    margin-bottom: 30px;
 }
 .high-score-label, .score-label{
-    position: relative;
-    bottom: 640px;
-    left: 30px;
-    font-size: 1.5rem;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 2.5rem;
     font-weight: bold;
 }
