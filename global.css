@@ -113,6 +113,7 @@ li{
 }
 input{
     margin-left: 30px;
+    margin-top: -25px;
 }
 .canvas-container{
     margin-top: 47px;
@@ -123,7 +124,7 @@ input{
     width: 1492px;
     height: 1038px !important;
     border-radius: 15px;
-    box-shadow: 10px 10px 10px ;
+    box-shadow: 10px 10px 10px;
 }
 
 .speed{
