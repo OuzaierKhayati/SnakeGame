@@ -125,7 +125,7 @@ button:active{
 }
 li{
     list-style:none;
-    font-size: 1.49vw;
+    font-size: 1.3vw;
     margin-left: 0.1vw;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 10px;
@@ -149,7 +149,7 @@ li{
 .speed-box li{
     margin-left: 8.5vw;
     list-style: disc;
-    font-size: 1.49vw;
+    font-size: 1.3vw;
 }
 .score{
     margin-top: -80vh;
