@@ -4,6 +4,7 @@
     font-family: sans-serif;
 }
 body{
+    background: linear-gradient(310deg, #74747478, hsl(209, 90%, 76%));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +14,6 @@ body{
 }
 
 #home {
-    background: hsla(240, 52%, 28%, 0.841);
     margin :0;
     height: 100vh;
 
@@ -22,120 +22,150 @@ body{
     margin: 0;
     height: 100vh;
     width: 100%;
-    background: linear-gradient(310deg, #000000, hsla(240, 100%, 68%, 0.659));
 
 }
 h1{
     text-align: center;
-    font-size: 6.5rem;
     color: aliceblue;
 
 }
 #myH1Login{
-    margin-bottom: 70px;
+    margin-bottom: 40px;
+    font-size: 4vw;
 }
 .container{
-    width: 850px;
-    height: 500px;
-    background:  hsla(240, 100%, 72%, 0.13);
+    width: 30%;
+    height: auto;
+    min-height: 40%;
+    background:  hsla(0, 0%, 27%, 0.253);
     border: 5px solid rgba(0, 0, 0, 0.781);
     border-radius: 15px;
     box-shadow: 0px 0px 30px rgb(0, 0, 0);
-    padding: 20px 20px;
+    padding: 10px 10px;
     text-align: center;
 
 }
 p{
-    font-size: 2rem;
+    font-size: 2vw;
     color: white;
 }
 button{
-    font-size: 3.5rem;
+    font-size: 3.5vw;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
-    margin-top: 70px;
+    margin-top: 40px;
     padding: 5px 50px 10px ;
     border-radius: 10px;
     border: 4px solid hsl(0, 0%, 0%) ;
-    background-color: hsl(0, 0%, 55%);
+    background-color: hsla(0, 0%, 72%, 0.621);
     cursor: pointer;
 
 }
 button:hover{
-    background-color: hsl(0, 0%, 65%);
+    background-color: hsl(119, 100%, 76%);
 }
 button:active{
-    background-color: hsl(0, 0%, 55%);
+    background-color: hsl(119, 100%, 66%);
 }
 .game-container{
-    margin-top: 0px;
-    width: 95%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: flex-start;
+    column-gap: 0.5em;
 }
+.containerg{
+    transition: width 0.8s ease, height 0.8s ease;
+
+    border: 3px solid rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: flex-start;
+    
+    background: hsla(0, 0%, 42%, 0.418);
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.57) ;
+    height: auto;
+    max-height: 100%;
+    width: 35%;
+    margin-right: 20px;
+    
+}
+#container-button{
+    margin-left: 10px;
+    margin-bottom: 45px;
+    font-size: 2em;
+    font-weight:bold;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid black;
+    border-radius: 8px;
+    padding: 0px;
+    width: 25px;
+    height: 80px;
+}
+#container-button:hover{
+    background-color: rgb(198, 198, 198);
+}
+
 .left-box{
-    border: 2px solid black;
-    background: hsl(240, 100%, 72%);
-    border-radius: 3px;
-    box-shadow: 10px 10px 10px 10px ;
-    height: 50%;
-    width: 30%;
-    margin-top: 0px;
+    padding:0px;
+    height: auto;
+    max-height: 100%;
+    width: 100%;
 }
 
 .center {
-    font-size: 3rem;
-    margin-top: 20px;
-    text-align: center;
-    margin-bottom: 30px;
+    font-size: 3vw;
+    margin-top: 2vh;
+    margin-left: 3vw;
+    margin-bottom: 2vh;
 }
 li{
-    font-size: 1.5rem;
+    list-style:none;
+    font-size: 1.49vw;
+    margin-left: 0.1vw;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 10px;
 
+
 }
 .h1Speed{
-    font-size: 2rem;
-    margin-top: 25px;
+    font-size: 2vw;
+    margin-top: 2vh;
     margin-bottom: 10px;
-    color: black;
-    margin-bottom: 0px;
+    color: rgba(255, 255, 255, 0.707);
+
 
 }
 .speed-box{
     border: 0px solid black;
+    margin-bottom: 5vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
-input{
-    margin-left: 30px;
-    margin-top: -25px;
+.speed-box li{
+    margin-left: 8.5vw;
+    list-style: disc;
+    font-size: 1.49vw;
 }
-.canvas-container{
-    margin-top: 47px;
-    margin-left: 70px;
-}
-#game-canvas{
-    background-color: rgb(209, 209, 209);
-    width: 1492px;
-    height: 1038px !important;
-    border-radius: 15px;
-    box-shadow: 10px 10px 10px;
+.score{
+    margin-top: -80vh;
+    margin-right: 45dvw;
 }
 
-.speed{
-    display: inline-block;
-    padding:20px;
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-}
-.high-score-label, .score-label{
-    margin-top: 20px;
+.scoreLabel{
+    margin-bottom: 5px;
+    color: rgba(0, 0, 0, 0.605);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3vh;
     font-weight: bold;
+}
+.hidden{
+    display: none;
+}
+.containerWidth{
+    width: 0%;
 }

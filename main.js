@@ -10,10 +10,10 @@ const canvas = getCanvas();
 const ctx = canvas.getContext("2d");
 let newDirection = "right", oldDirection = "right";
 let v =0;// 
-let food = {x:900,y:300}
+let food = {x:300,y:300}
 let highscore=0;
 
-let body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}];
+let body = [{ x: 300, y: 300, newDirection: "right"}, { x: 270, y: 300, newDirection: "right"}, { x: 240, y: 300, newDirection: "right"}, { x: 210, y: 300, newDirection: "right"}];
 
 
 function getCanvas() {
@@ -25,7 +25,13 @@ function getCanvas() {
 function setCanvasSize() {
     const parent = canvas.parentNode;
     canvas.width = parent.offsetWidth;
+    while(canvas.width % 30 !=0){
+        canvas.width++;
+    }
     canvas.height = parent.offsetHeight;
+    while(canvas.height % 30 !=0){
+        canvas.height++;
+    }
 }
 
 function getCanvasSize() {
@@ -86,21 +92,22 @@ function move() {
     }
 
 }
+function restart(){
+    body = [{ x: 300, y: 300, newDirection: "right"}, { x: 270, y: 300, newDirection: "right"}, { x: 240, y: 300, newDirection: "right"}, { x: 210, y: 300, newDirection: "right"}];
+    food = drawFood();
+    newDirection=oldDirection="right";
+}
 
 
 function isDead(){
     const {width, height}= getCanvasSize();
-    if (body[0].x<-v || body[0].x>width-30+v || body[0].y<-v || body[0].y>height-30+v){
-        body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}, { x: 780, y: 300, newDirection: "right"}, { x: 750, y: 300, newDirection: "right"}];
-        newDirection=oldDirection="right";
-        food = {x:900,y:300};
+    if (body[0].x<-25 || body[0].x>width-5 || body[0].y<-25 || body[0].y>height-5){
+        restart();
     }
     else{
         for (let h=3; h<body.length; h++){
             if (Math.abs(body[0].x-body[h].x)<30 && Math.abs(body[0].y-body[h].y)<30){
-                body = [{ x: 900, y: 300, newDirection: "right"}, { x: 870, y: 300, newDirection: "right"}, { x: 840, y: 300, newDirection: "right"}, { x: 810, y: 300, newDirection: "right"}, { x: 780, y: 300, newDirection: "right"}, { x: 750, y: 300, newDirection: "right"}];
-                newDirection=oldDirection="right";
-                food = {x:900,y:300};
+                restart();
                 break;
             }
         }
@@ -182,7 +189,6 @@ function renderGame() {
     clearScreen();
 
     // Draw game
-
     drawSquare(body[0].x, body[0].y, 30, 'white');
     for (let h = 1; h < body.length; h++) {
         drawSquare(body[h].x, body[h].y, 30, 'black');
@@ -250,24 +256,15 @@ function main() {
             case "A": addToBody();break;
             case "r": if (body.length>2){body.pop()} ;break;
             case "R": if (body.length>2){body.pop()} ;break;
+            case "s": restart(); v=5; break;
+            case "S": restart(); v=5 ;break;
+            case "f": restart(); v=10 ;break;
+            case "F": restart(); v=10 ;break;
+            case "T": restart(); v=15 ;break;
+            case "t": restart(); v=15 ;break;
         }
     });
 
-    Easy.addEventListener("change", () => {
-        if (Easy.checked) {v=5;}
-      });
-    Medium.addEventListener("change", () => {
-        if (Medium.checked) {v=10;}
-      });
-      Hard.addEventListener("change", () => {
-        if (Hard.checked) {v=15;}
-      });
-    
-    speedRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            radio.blur();
-        });
-    });
 
     // Run game
     window.requestAnimationFrame(gameLoop)
