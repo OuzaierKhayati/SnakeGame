@@ -24,7 +24,7 @@
                     <li>Press <b>T/t</b> for Turbo</li>
                 </div>
             </div>
-            <button id="container-button" onclick="displayNone()">></button>
+            <button id="container-button" onclick="toggleSidebar()">></button>
 
         </div>
         <div style="width: 60%; height: 80%!important; ">
@@ -43,15 +43,21 @@
 </body>
 <script src="main.js" defer></script>
 <script>
-    function displayNone() {
-        let container = document.getElementById("containerg");
-        let leftBox = document.getElementById("left-box");
-        let button = document.getElementById("container-button");
+    let isAnimating = false ;
+
+    function toggleSidebar() {
+        if (isAnimating) return;
+
+        isAnimating=true;
+        const container = document.getElementById("containerg");
+        const leftBox = document.getElementById("left-box");
+        const button = document.getElementById("container-button");
         if (button.textContent === ">") {
             leftBox.classList.add("hidden");
             setTimeout(() => {
                 container.classList.add("containerWidth");
                 button.textContent = "<";
+                isAnimating = false;
             }, 40);
         }
         else {
@@ -59,6 +65,7 @@
             button.textContent = ">";
             setTimeout(() => {
                 leftBox.classList.remove("hidden");
+                isAnimating = false;
             }, 750);
         }
 
