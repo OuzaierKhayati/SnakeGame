@@ -4,7 +4,8 @@
     font-family: sans-serif;
 }
 body{
-    background: linear-gradient(310deg, #74747478, hsl(209, 90%, 76%));
+    /* background: linear-gradient(310deg, #74747478, hsl(209, 90%, 76%)); */
+    background-image: url(background3.png);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +27,7 @@ body{
 }
 h1{
     text-align: center;
-    color: aliceblue;
+    color: hsl(0, 0%, 100%);
 
 }
 #myH1Login{
@@ -37,10 +38,10 @@ h1{
     width: 30%;
     height: auto;
     min-height: 40%;
-    background:  hsla(0, 0%, 27%, 0.253);
-    border: 5px solid rgba(0, 0, 0, 0.781);
+    background:  hsla(0, 0%, 53%, 0.9);
+    border: 5px solid hsla(0, 0%, 0%, 0.781);
     border-radius: 15px;
-    box-shadow: 0px 0px 30px rgb(0, 0, 0);
+    box-shadow: 0px 0px 30px hsl(0, 0%, 0%);
     padding: 10px 10px;
     text-align: center;
 
@@ -62,10 +63,10 @@ button{
 
 }
 button:hover{
-    background-color: hsl(119, 100%, 76%);
+    background-color: hsl(0, 0%, 100%);
 }
 button:active{
-    background-color: hsl(119, 100%, 66%);
+    background-color: hsla(0, 0%, 53%, 0.9);
 }
 .game-container{
     width: 100%;
@@ -79,7 +80,7 @@ button:active{
 .containerg{
     transition: width 0.8s ease, height 0.8s ease;
 
-    border: 3px solid rgb(0, 0, 0);
+    border: 3px solid hsl(0, 0%, 0%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,7 +100,7 @@ button:active{
     margin-bottom: 45px;
     font-size: 2em;
     font-weight:bold;
-    background-color: rgb(255, 255, 255);
+    background-color: hsl(0, 0%, 100%);
     border: 3px solid black;
     border-radius: 8px;
     padding: 0px;
@@ -136,7 +137,7 @@ li{
     font-size: 2vw;
     margin-top: 2vh;
     margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.707);
+    color: rgb(255, 255, 255);
 
 
 }
