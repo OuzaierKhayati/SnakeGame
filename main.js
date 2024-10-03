@@ -227,24 +227,28 @@ function main() {
 
   document.addEventListener("keydown", (e) => {
     switch (e.key) {
+      case "6":
       case "ArrowRight":
         if (oldDirection != "left" && oldDirection != "right") {
           newDirection = "right";
         }
         break;
 
+        case "4":
       case "ArrowLeft":
         if (oldDirection != "right" && oldDirection != "left") {
           newDirection = "left";
         }
         break;
 
+      case "8":
       case "ArrowUp":
         if (oldDirection != "down" && oldDirection != "up") {
           newDirection = "up";
         }
         break;
 
+      case "5":
       case "ArrowDown":
         if (oldDirection != "down" && oldDirection != "up") {
           newDirection = "down";
@@ -255,19 +259,19 @@ function main() {
 
   document.addEventListener("keyup", (e) => {
     switch (e.key) {
-      case "a": addToBody(); break;
+      case "a":
       case "A": addToBody(); break;
       
-      case "r": if (body.length > 2) { body.pop()}; break;
+      case "r":
       case "R": if (body.length > 2) { body.pop()}; break;
 
-      case "s":createSnake(3); speed = 5; break;
+      case "s":
       case "S":createSnake(3); speed = 5; break;
       
-      case "f":createSnake(3); speed = 10; break;
+      case "f":
       case "F":createSnake(3); speed = 10; break;
       
-      case "T":createSnake(3); speed = 15; break;
+      case "T":
       case "t":createSnake(3); speed = 15; break;
     }
   });
